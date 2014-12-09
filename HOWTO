@@ -1,0 +1,33 @@
+/////////////////////////////////////////////////////////////////////////////////////////
+///////    Install tk   /////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+
+sudo apt-get install libtcltk-ruby
+
+despues:
+
+rvm get stable --auto-dotfiles
+
+rvm reinstall 2.1.1 --enable-pthread
+
+If this doesn't work, install
+http://www.activestate.com/activetcl/downloads
+
+and then:
+
+rvm get stable --auto-dotfiles
+
+rvm reinstall 2.1.1 --enable-pthread
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+///////    Documentacion Rub Tk//////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+
+http://www.tkdocs.com/tutorial/
+
+En esa documentacion se explica como funciona en ruby, python y demas lenguajes que  soportan Tk.
+Por eso, no encontraba la documentacion de TkText y si de TK::Text. Porque TK::Text se refiere a la doc de TK. Para ver la doc en ruby, voy a http://www.tkdocs.com/tutorial/ y busco Tk::Text y veo que en ruby se refiere a TkText.
+
+Ejemplos de Tk en:
+~/.rvm/src/ruby-2.1.1/ext/tk/sample/demos-en
