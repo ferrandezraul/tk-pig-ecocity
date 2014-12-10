@@ -3,6 +3,8 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 
 No me funciona tk con rvm. Tk me funciona solo con el ruby del sistema.
+En la consola, properties -> title and command -> Run command as a login shell -> if turned on rvm works and therefore tk does not work
+                                                                               -> if turned off rvm does not work and tk works
 
 sudo apt-get install libtcltk-ruby
 
