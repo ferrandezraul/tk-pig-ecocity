@@ -4,20 +4,11 @@
 
 sudo apt-get install libtcltk-ruby
 
-despues:
+tengo ActiveTcl? 8.6? Si lo tengo desinstalarlo (go to ActiveTcl/../../lib/rpmm/../uninstall)
 
-rvm get stable --auto-dotfiles
+descargar ActiveTcl8.5 http://www.activestate.com/activetcl/downloads
 
-rvm reinstall 2.1.1 --enable-pthread
-
-If this doesn't work, install
-http://www.activestate.com/activetcl/downloads
-
-and then:
-
-rvm get stable --auto-dotfiles
-
-rvm reinstall 2.1.1 --enable-pthread
+rvm reinstall ruby-2.1.1 --with-tcl --with-tk --enable-pthread
 
 /////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////    launcher  ////////////// ////////////////////////////////
@@ -28,19 +19,23 @@ sudo apt-get install gnome-panel
 Alt+F2
 gnome-desktop-item-edit --create-new ~/Desktop
 
-
 But the path to the main.rb is hardcoded in the launcher. I couldn't find a way yet, to
 set the path in a better way. Env vars like $HOME do not work.
-
 
 /////////////////////////////////////////////////////////////////////////////////////////
 ///////    Documentacion Rub Tk  ////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 
 http://www.tkdocs.com/tutorial/
-
-En esa documentacion se explica como funciona en ruby, python y demas lenguajes que  soportan Tk.
-Por eso, no encontraba la documentacion de TkText y si de TK::Text. Porque TK::Text se refiere a la doc de TK. Para ver la doc en ruby, voy a http://www.tkdocs.com/tutorial/ y busco Tk::Text y veo que en ruby se refiere a TkText.
+http://www.ruby-doc.org/stdlib-2.0/libdoc/tk
 
 Ejemplos de Tk en:
 ~/.rvm/src/ruby-2.1.1/ext/tk/sample/demos-en
+
+Usefull methods from Tk widgets
+
+# List all posible options for that widget ( i.e. text, command, padding, etc ...)
+configinfo
+
+Nice tutorial
+http://www.tkdocs.com/tutorial/concepts.html

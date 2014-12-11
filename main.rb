@@ -31,7 +31,6 @@ menu_spec = [
               [
                 [ 'File', 0 ],
                 [ 'About ... ', proc{aboutBox}, 0, '<F1>' ],
-                '---',
                 [ 'Quit', proc{exit}, 0, 'Ctrl-Q' ]
               ],
               [
