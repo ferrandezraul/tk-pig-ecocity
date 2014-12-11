@@ -2,15 +2,13 @@
 ///////    Install tk   /////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 
-No me funciona tk con rvm. Tk me funciona solo con el ruby del sistema.
-En la consola, properties -> title and command -> Run command as a login shell -> if turned on rvm works and therefore tk does not work
-                                                                               -> if turned off rvm does not work and tk works
-
 sudo apt-get install libtcltk-ruby
 
-tengo ActiveTcl? 8.6? Si lo tengo desinstalarlo (go to ActiveTcl/../../lib/rpmm/../uninstall)
+Is ActiveTcl installed? 8.6 does not work on ubuntu 14
+uninstall (go to ActiveTcl/../../lib/rpmm/../uninstall)
 
-descargar ActiveTcl8.5 http://www.activestate.com/activetcl/downloads
+download ActiveTcl8.5 http://www.activestate.com/activetcl/downloads
+install it.
 
 rvm reinstall ruby-2.1.1 --with-tcl --with-tk --enable-pthread
 
@@ -33,13 +31,25 @@ set the path in a better way. Env vars like $HOME do not work.
 http://www.tkdocs.com/tutorial/
 http://www.ruby-doc.org/stdlib-2.0/libdoc/tk
 
-Ejemplos de Tk en:
+Examples Tk:
 ~/.rvm/src/ruby-2.1.1/ext/tk/sample/demos-en
 
-Usefull methods from Tk widgets
+/////////////////////////////////////////////////////////////////////////////////////////
+///////////////  Usefull methods from Tk widgets
+/////////////////////////////////////////////////////////////////////////////////////////
 
 # List all posible options for that widget ( i.e. text, command, padding, etc ...)
 configinfo
 
-Nice tutorial
+/////////////////////////////////////////////////////////////////////////////////////////
+////////////////  Geometry Management  //////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+
+The "grid" command, where you can pass along the column and row you want each widget to go in,
+how things are aligned within a grid, and so on. Grid is an example of a geometry manager
+(of which there are several in Tk, grid being the most useful).
 http://www.tkdocs.com/tutorial/concepts.html
+
+/////////////////////////////////////////////////////////////////////////////////////////
+////////////////  Event Handling ///// //////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
