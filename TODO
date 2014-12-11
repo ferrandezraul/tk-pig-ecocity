@@ -1,10 +1,6 @@
- Actualmente, rubymine utiliza ruby 1.9.3,
- por eso no puedo ver la definicion de onjetos Tk.
- Si utilizo ruby 1.9.3 podre ver los modulos de tk en rubymine.
- Para eso necesito tener las librerias de tk y tcl compatibles con 1.9.3 y reinstalar rvm.
 
 
- Ir siguiendo creando menus:
+ Ir siguiendo creando menus pensando en la arquitectura:
     - Productes, para ver los productos
     - Customers, para ver los customers
     - Comandes, para ver las orders
