@@ -1,4 +1,9 @@
 
+Crear TkEcocityManager
+Usarlo en main
+TkEcocityManager.new( :tkroot => $root, :products => products )
+
+y mover codigo de tablas etc ... en diferentes clases
 
  Ir siguiendo creando menus pensando en la arquitectura:
     - Productes, para ver los productos

@@ -1,0 +1,55 @@
+# NAME #,"# TIENDA €/kg #
+IVA INCLUIDO","# COOPE €/kg #
+IVA INCLUIDO","# PVP #
+IVA INCLUIDO",# IVA % #,# TIPO DE PRECIO #,# PESO EN KG POR UNIDAD #,# OBSERVACIONS #,"# SUB-PRODUCT
+WEIGHT EN KG#",# SUB-PRODUCT#,"# SUB-PRODUCT
+WEIGHT EN KG#",# SUB-PRODUCT#,"# SUB-PRODUCT
+WEIGHT EN KG#","# SUB-PRODUCT# NOTA: para diferentes opciones. 
+usa el caracter | .Asegurate que el nombre del producto existe. 
+Y no uses espacios entre nombres de productos y el caracter |","# SUB-PRODUCT
+WEIGHT EN KG#",,"# SUB-PRODUCT
+WEIGHT EN KG#",,"# SUB-PRODUCT
+WEIGHT EN KG#",,"# SUB-PRODUCT
+WEIGHT EN KG#",,"# SUB-PRODUCT
+WEIGHT EN KG#",
+Costelles,8.5,9.5,10.5,10,EUR/Kg,,,,,,,,,,,,,,,,,,
+Filet,16,16,17,10,EUR/Kg,,,,,,,,,,,,,,,,,,
+Secret,14,14,15,10,EUR/Kg,0.25,,,,,,,,,,,,,,,,,
+Pedacet,9,10,11,10,EUR/Kg,0.15,,,,,,,,,,,,,,,,,
+Llom,13.5,14.5,15.5,10,EUR/Kg,,,,,,,,,,,,,,,,,,
+Cap de llom,9,9.5,10.5,10,EUR/Kg,,,,,,,,,,,,,,,,,,
+Ossos d'espinada,3,4,5,10,EUR/Kg,,,,,,,,,,,,,,,,,,
+Cua,8,8.5,9,10,EUR/Kg,0.3,,,,,,,,,,,,,,,,,
+Galtes,6.5,6.5,7.5,10,EUR/Kg,0.25,,,,,,,,,,,,,,,,,
+Fetge,3.5,4,5,10,EUR/Kg,,,,,,,,,,,,,,,,,,
+Peus de porc,5,5,6,10,EUR/Kg,0.2,Cuits o sense coure,,,,,,,,,,,,,,,,
+Llonzat,11.5,12.5,13.5,10,EUR/Kg,,,,,,,,,,,,,,,,,,
+Cansalada,4,5,6,10,EUR/Kg,,,,,,,,,,,,,,,,,,
+Carn per estofar,9,9.5,10.5,10,EUR/Kg,,,,,,,,,,,,,,,,,,
+Panxeta,6.5,7.8,9,10,EUR/Kg,,,,,,,,,,,,,,,,,,
+Botifarres,9.5,10.1,11,10,EUR/Kg,,,,,,,,,,,,,,,,,,
+Salsitxes,10.5,11.2,12.2,10,EUR/Kg,,,,,,,,,,,,,,,,,,
+Carn picada,8.5,9.5,10.5,10,EUR/Kg,,,,,,,,,,,,,,,,,,
+Hamburgueses,9.5,10,11,10,EUR/Kg,,,,,,,,,,,,,,,,,,
+Pilota/mandonguilles,10.5,11,12,10,EUR/Kg,,No disponible temporalm.,,,,,,,,,,,,,,,,
+Botifarra d'ou,13.5,14,16,10,EUR/Kg,,,,,,,,,,,,,,,,,,
+Botifarra fetge,13.5,14,16,10,EUR/Kg,,,,,,,,,,,,,,,,,,
+Botifarra negra,13.5,14,16,10,EUR/Kg,,,,,,,,,,,,,,,,,,
+Botifarra cap,14,15,17,10,EUR/Kg,,No disponible temporalm.,,,,,,,,,,,,,,,,
+Fuet,19,20,22,10,EUR/Kg,0.2,No disponible temporalm.,,,,,,,,,,,,,,,,
+Llonganissa,23,24,26,10,EUR/Kg,0.3,No disponible temporalm.,,,,,,,,,,,,,,,,
+Xoriç embotit,19,20,22,10,EUR/Kg,0.2,No disponible temporalm.,,,,,,,,,,,,,,,,
+Papada a granel,4,4,4,10,EUR/Kg,,,,,,,,,,,,,,,,,,
+Espatlla sense pell a granel,6,6,6,10,EUR/Kg,,,,,,,,,,,,,,,,,,
+Espatlla amb pell a granel,5.7,5.7,5.7,10,EUR/Kg,,,,,,,,,,,,,,,,,,
+Retall magre 1ª a granel,6.7,6.7,6.7,10,EUR/Kg,,,,,,,,,,,,,,,,,,
+Retall sense triar,6,6,6,10,EUR/Kg,,,,,,,,,,,,,,,,,,
+Costellar sencer,8,8,8,10,EUR/Kg,,2 kg aprox,,,,,,,,,,,,,,,,
+Llom de canya sencer,13,13,13,10,EUR/Kg,,3 kg aprox,,,,,,,,,,,,,,,,
+Cap de llom sencer,8.5,8.5,8.5,10,EUR/Kg,,1.5 kg aprox,,,,,,,,,,,,,,,,
+Llonzat sencer,11,11,11,10,EUR/Kg,,6 kg aprox,,,,,,,,,,,,,,,,
+Lot 2.5 kg,10,10.75,11.95,10,EUR/Kg,2.5,,0.5,Llom,0.4,Carn picada,0.5,Botifarra d'ou|Botifarra fetge|Botifarra negra|Botifarra cap,0.6,Botifarres|Salsitxes,0.4,Panxeta|Costelles,,,,,,
+Lot 4 kg,9.5,10.25,11.5,10,EUR/Kg,4,,0.5,Llom,1,Carn picada,0.5,Botifarra d'ou|Botifarra fetge|Botifarra negra|Botifarra cap,0.4,Cansalada,0.6,Hamburgueses|Botifarres,0.6,Botifarres|Salsitxes,0.4,Cap de llom|Carn per estofar,,
+Lot 6 kg,9,9.75,10.95,10,EUR/Kg,6,,0.5,Llom,1,Carn picada,0.5,Botifarra d'ou|Botifarra fetge|Botifarra negra|Botifarra cap,0.6,Costelles,0.6,Panxeta|Ossos d'espinada,0.8,Hamburgueses,0.4,Cap de llom|Carn per estofar,1.6,Botifarres|Salsitxes
+6 ous,1.65,1.75,1.8,4,EUR/Unidad,,,,,,,,,,,,,,,,,,
+12 ous,3.3,3.45,3.85,4,EUR/Unidad,,,,,,,,,,,,,,,,,,
