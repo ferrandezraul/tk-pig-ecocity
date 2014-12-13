@@ -14,36 +14,51 @@ class MainWindow
     # Configs of menu_spec can override it.
     root.add_menubar( menu_spec )
 
-    frame = Tk::Tile::Frame.new(root) { padding "3 3 12 12" }.grid( :sticky => 'nsew')
-    TkGrid.columnconfigure root, 0, :weight => 1; TkGrid.rowconfigure root, 0, :weight => 1
+    content = Tk::Tile::Frame.new(root)
 
-    label = Tk::Tile::Label.new($frame) { text 'Products:' }
+    frame = Tk::Tile::Frame.new(content) { padding "3 3 12 12" }
 
-    tree = Tk::Tile::Treeview.new(frame) { columns 'name description price' }
-    tree.heading_configure( 'name', :text => 'Nom')
-    tree.heading_configure( 'description', :text => 'Descripció')
-    tree.heading_configure( 'price', :text => 'Preu')
+    label = Tk::Tile::Label.new(content) { text 'Products:' }
 
-    # For iOS
+    @tree = Tk::Tile::Treeview.new(content) {
+      columns 'name description price'
+    }
+
+    @tree.heading_configure( 'name', :text => 'Nom')
+    @tree.heading_configure( 'description', :text => 'Descripció')
+    @tree.heading_configure( 'price', :text => 'Preu')
+
     if Tk.windowingsystem != 'aqua'
-      vsb = tree.yscrollbar(Ttk::Scrollbar.new(frame))
-      hsb = tree.xscrollbar(Ttk::Scrollbar.new(frame))
-    else  # Linux, win
-      vsb = tree.yscrollbar(Tk::Scrollbar.new(frame))
-      hsb = tree.xscrollbar(Tk::Scrollbar.new(frame))
+      @v_scrollbar = @tree.yscrollbar(Ttk::Scrollbar.new(content))
+      @h_scrollbar = @tree.xscrollbar(Ttk::Scrollbar.new(content))
+    else
+      @v_scrollbar = @tree.yscrollbar(Tk::Scrollbar.new(content))
+      @h_scrollbar = @tree.xscrollbar(Tk::Scrollbar.new(content))
     end
 
-    Tk.grid(label,     :in=>frame, :sticky=>'nsew')
-    Tk.grid(tree, vsb, :in=>frame, :sticky=>'nsew')
-    Tk.grid(hsb,       :in=>frame, :sticky=>'nsew')
+    # :sticky => nw When expanding, align it to north west
+    # :sticky => ew When expanding, align it to east west
+    content.grid :column => 0, :row => 0, :sticky => 'nsew'
+    frame.grid :column => 0, :row => 0, :sticky => 'nsew'
+    label.grid :column => 0, :row => 1, :sticky => 'nw'
+    @tree.grid :column => 0, :row => 2, :sticky => 'nsew'
+    @v_scrollbar.grid :column => 1, :row => 2, :sticky => 'ns'
+    @h_scrollbar.grid :column => 0, :row => 3, :sticky => 'ew'
+
+    # :weight => 0 Do NOT expand widget when changing size
+    # :weight => 1 expand widget when changing size
+    TkGrid.columnconfigure( root, 0, :weight => 1 )
+    TkGrid.rowconfigure( root, 0, :weight => 1 )
+
+    TkGrid.columnconfigure( content, 0, :weight => 1 )
+    TkGrid.rowconfigure( content, 0, :weight => 0 )
+    TkGrid.rowconfigure( content, 1, :weight => 0 )
+    TkGrid.rowconfigure( content, 2, :weight => 1 )
 
     ## Code to insert the data nicely
     args[:products].each{ | product |
-      tree.insert( '', :end, :values=>[ product.name, product.price_tienda, product.price_coope] )
+      @tree.insert( '', :end, :values=>[ product.name, product.price_tienda, product.price_coope] )
     }
-
-    # Display children widgets from frame
-    #TkWinfo.children($frame).each {|w| TkGrid.configure w, :padx => 5, :pady => 5}
 
     # start eventloop
     Tk.mainloop
