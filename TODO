@@ -1,10 +1,12 @@
+Leer mas sobre geometry manager y grid.
+Probarlo en ejercicios
 
-Crear TkEcocityManager
-Usarlo en main
-TkEcocityManager.new( :tkroot => $root, :products => products )
+Eliminar primera columna en TreeView
+Anyadir todos las columnas de los productos
+Decorarlas con EUR, kg o lo que sea
 
-y mover codigo de tablas etc ... en diferentes clases
 
+El Widget NoteBook puede ser interesante.
  Ir siguiendo creando menus pensando en la arquitectura:
     - Productes, para ver los productos
     - Customers, para ver los customers

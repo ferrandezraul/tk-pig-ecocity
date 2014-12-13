@@ -21,7 +21,7 @@ class MainWindow
 
     tree = Tk::Tile::Treeview.new(frame) { columns 'name description price' }
     tree.heading_configure( 'name', :text => 'Nom')
-    tree.heading_configure( 'description', :text => 'Descripcio')
+    tree.heading_configure( 'description', :text => 'Descripció')
     tree.heading_configure( 'price', :text => 'Preu')
 
     # For iOS
