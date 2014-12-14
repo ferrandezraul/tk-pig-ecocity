@@ -11,7 +11,7 @@ class ProductsView
   TREE_ROOT_ID = 'products'
 
   def initialize( args )
-    @tree = Tk::Tile::Treeview.new( args[:parent])
+    @tree = Tk::Tile::Treeview.new( args[:parent] )
 
     # Set column id's
     @tree['columns'] = COLUMN_IDS
@@ -19,12 +19,17 @@ class ProductsView
     # Get font
     font = Ttk::Style.lookup( @tree[:style], :font )
 
+    # Array.zip( array )
     # a = [ 4, 5, 6 ]
     # b = [ 7, 8, 9 ]
     # [ 1, 2, 3 ].zip( a, b ) #=> [ [1, 4, 7], [2, 5, 8], [3, 6, 9] ]
+    #
+    # Set headers in columns
     COLUMN_IDS.zip( COLUMN_NAMES ).each{ |col, val|
       @tree.heading_configure( col, :text => val )
-      @tree.column_configure( col, :width => TkFont.measure( font, val ) )
+      # anchor => String
+      # Alignment. Must be one of the values n, ne, e, se, s, sw, w, nw, or center.
+      @tree.column_configure( col, :width => TkFont.measure( font, val ), :anchor => 'e' )
     }
 
     # Create scrollbars
@@ -46,7 +51,7 @@ class ProductsView
     # Insert nodes with product attributes as parent nodes of node with :id => 'products'
     args[:products].each{ | product |
       product_columns = [ product.name,
-                          product.price_tienda,
+                          "#{ product.price_tienda } EUR",
                           product.price_coope,
                           product.price_pvp,
                           product.iva,
