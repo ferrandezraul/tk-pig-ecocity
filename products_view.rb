@@ -11,6 +11,10 @@ class ProductsView
   COLUMN_NAMES = [ 'Nom', 'Preu Tenda', 'Preu Coope', 'Preu PVP', 'IVA', 'Tipus']
   ROOT_TREE_NODE_ID = 'Productes'
 
+
+  # Draws a Tree displaying product attributes
+  # args[:parent] Parent Tk widget
+  # args[:products] List of products
   def initialize( args )
     @tree = Tk::Tile::Treeview.new( args[:parent] )
 
