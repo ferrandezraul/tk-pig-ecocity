@@ -17,7 +17,11 @@ class ProductsView
 
     font = Ttk::Style.lookup( @tree[:style], :font )
 
+    # a = [ 4, 5, 6 ]
+    # b = [ 7, 8, 9 ]
+    # [ 1, 2, 3 ].zip( a, b ) #=> [ [1, 4, 7], [2, 5, 8], [3, 6, 9] ]
     @column_ids.zip( @column_names ).each{ |col, val|
+
       @tree.heading_configure( col, :text => val )
       @tree.column_configure( col, :width => TkFont.measure( font, val ) )
     }
