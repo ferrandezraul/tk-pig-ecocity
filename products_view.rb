@@ -6,26 +6,28 @@ require 'tk'
 require 'tkextlib/tile'
 
 class ProductsView
+  COLUMN_IDS = %w( name price_shop price_coope price_pvp iva price_type )
+  COLUMN_NAMES = [ 'Nom', 'Preu Tenda', 'Preu Coope', 'Preu PVP', 'IVA', 'Tipus']
+  TREE_ROOT_ID = 'products'
 
   def initialize( args )
-    @column_ids = %w( name price_shop price_coope price_pvp iva price_type )
-    @column_names = [ 'Nom', 'Preu Tenda', 'Preu Coope', 'Preu PVP', 'IVA', 'Tipus']
-    @tree_root_id = 'products'
-
     @tree = Tk::Tile::Treeview.new( args[:parent])
-    @tree['columns'] = @column_ids
 
+    # Set column id's
+    @tree['columns'] = COLUMN_IDS
+
+    # Get font
     font = Ttk::Style.lookup( @tree[:style], :font )
 
     # a = [ 4, 5, 6 ]
     # b = [ 7, 8, 9 ]
     # [ 1, 2, 3 ].zip( a, b ) #=> [ [1, 4, 7], [2, 5, 8], [3, 6, 9] ]
-    @column_ids.zip( @column_names ).each{ |col, val|
-
+    COLUMN_IDS.zip( COLUMN_NAMES ).each{ |col, val|
       @tree.heading_configure( col, :text => val )
       @tree.column_configure( col, :width => TkFont.measure( font, val ) )
     }
 
+    # Create scrollbars
     if Tk.windowingsystem != 'aqua'
       @v_scrollbar = @tree.yscrollbar(Ttk::Scrollbar.new(args[:parent]))
       @h_scrollbar = @tree.xscrollbar(Ttk::Scrollbar.new(args[:parent]))
@@ -36,10 +38,10 @@ class ProductsView
 
     ## Code to insert the data nicely
     # root node in tree
-    @tree.insert( '', 'end', :id => @tree_root_id, :text => 'Productes')
+    @tree.insert( '', 'end', :id => TREE_ROOT_ID, :text => 'Productes')
 
     # Expand (open) node. By default nodes are not open
-    @tree.itemconfigure( @tree_root_id, 'open', true);
+    @tree.itemconfigure( TREE_ROOT_ID, 'open', true);
 
     # Insert nodes with product attributes as parent nodes of node with :id => 'products'
     args[:products].each{ | product |
@@ -51,11 +53,11 @@ class ProductsView
                           product.price_type ]
 
       # Inserted as children of node with :id => @tree_root_id (root node)
-      @tree.insert( @tree_root_id, :end, :values => product_columns )
+      @tree.insert( TREE_ROOT_ID, :end, :values => product_columns )
 
       # Set column size based on length of data
       # Extracted from ~/.rvm/src/ruby-2.1.1/ext/tk/sample/demos-en/widget
-      @column_ids.zip( product_columns ).each{ | col, val |
+      COLUMN_IDS.zip( product_columns ).each{ | col, val |
         len = TkFont.measure( font, "#{ val }  ")
         if @tree.column_cget( col, :width ) < len
           @tree.column_configure( col, :width => len )
