@@ -9,12 +9,18 @@ class ProductsView
 
   def initialize( args )
     @tree = Tk::Tile::Treeview.new( args[:parent]) {
-      columns 'name description price'
+      columns 'name price_tienda price_coope'
+
     }
 
-    @tree.heading_configure( 'name', :text => 'Nom')
-    @tree.heading_configure( 'description', :text => 'Descripció')
-    @tree.heading_configure( 'price', :text => 'Preu')
+    font = Ttk::Style.lookup( @tree[:style], :font )
+    cc = %w( name price_tienda price_coope )
+    cc.each{ |name|
+      @tree.heading_configure( name, :text => name,
+                             :command => proc{ sort_by( @tree, name, false ) } )
+
+      @tree.column_configure( name, :width => TkFont.measure( font, name ) )
+    }
 
     if Tk.windowingsystem != 'aqua'
       @v_scrollbar = @tree.yscrollbar(Ttk::Scrollbar.new(args[:parent]))
@@ -26,7 +32,7 @@ class ProductsView
 
     ## Code to insert the data nicely
     args[:products].each{ | product |
-      @tree.insert( '', :end, :values => [ product.name, product.price_tienda, product.price_coope ] )
+      @tree.insert( nil, :end, :values => [ product.name, product.price_tienda, product.price_coope ] )
     }
   end
 
@@ -40,5 +46,13 @@ class ProductsView
     @h_scrollbar.grid :column => args[:column], :row => args[:row ] +1, :sticky => 'ew'
   end
 
+  ## Code to do the sorting of the tree contents when clicked on
+  def sort_by(tree, col, direction)
+    @tree.children( nil ).map!{ |row| [@tree.get( row, col ), row.id] } .
+        sort( &( (direction)? proc{ |x, y| y <=> x}: proc{ |x, y| x <=> y } ) ) .
+        each_with_index{ | info, idx | @tree.move( info[1], nil, idx) }
+
+    @tree.heading_configure(col, :command => proc{ sort_by( tree, col, ! direction ) } )
+  end
 
 end
