@@ -30,14 +30,14 @@ class ProductsView
     }
   end
 
-  def grid
+  def grid(args)
     # All widgets are divided into columns and rows
     # grid call makes the widget visible
     # :sticky => nw When expanding, align it to north west
     # :sticky => ew When expanding, align it to east west
-    @tree.grid :column => 0, :row => 2, :sticky => 'nsew'
-    @v_scrollbar.grid :column => 1, :row => 2, :sticky => 'ns'
-    @h_scrollbar.grid :column => 0, :row => 3, :sticky => 'ew'
+    @tree.grid :column => args[:column], :row => args[:row], :sticky => 'nsew'
+    @v_scrollbar.grid :column => args[:column] + 1, :row => args[:row], :sticky => 'ns'
+    @h_scrollbar.grid :column => args[:column], :row => args[:row ] +1, :sticky => 'ew'
   end
 
 

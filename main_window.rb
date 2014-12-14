@@ -33,18 +33,17 @@ class MainWindow
     content.grid :column => 0, :row => 0, :sticky => 'nsew'
     frame.grid :column => 0, :row => 0, :sticky => 'nsew'
     label.grid :column => 0, :row => 1, :sticky => 'nw'
-    products_view.grid
+    products_view.grid :column => 0, :row => 2
 
     # How expand is handled
-    # :weight => 0 Do NOT expand widget when changing size
     # :weight => 1 expand widget when changing size
-    TkGrid.columnconfigure( root, 0, :weight => 1 )
-    TkGrid.rowconfigure( root, 0, :weight => 1 )
+    TkGrid.columnconfigure( root, 0, :weight => 1 )     # Expand column with root
+    TkGrid.rowconfigure( root, 0, :weight => 1 )        # Expand row with root
 
-    TkGrid.columnconfigure( content, 0, :weight => 1 )
-    TkGrid.rowconfigure( content, 0, :weight => 0 )
-    TkGrid.rowconfigure( content, 1, :weight => 0 )
-    TkGrid.rowconfigure( content, 2, :weight => 1 )
+    TkGrid.columnconfigure( content, 0, :weight => 1 )  # Expand column with content
+    TkGrid.rowconfigure( content, 0, :weight => 0 )     # DO NOT Expand row with content
+    TkGrid.rowconfigure( content, 1, :weight => 0 )     # DO NOT Expand row with label
+    TkGrid.rowconfigure( content, 2, :weight => 1 )     # Expand row with products_view
 
     # start eventloop
     Tk.mainloop
