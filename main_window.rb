@@ -36,6 +36,8 @@ class MainWindow
       @h_scrollbar = @tree.xscrollbar(Tk::Scrollbar.new(content))
     end
 
+    # All widgets are divided into columns and rows
+    # grid call makes the widget visible
     # :sticky => nw When expanding, align it to north west
     # :sticky => ew When expanding, align it to east west
     content.grid :column => 0, :row => 0, :sticky => 'nsew'
@@ -45,6 +47,7 @@ class MainWindow
     @v_scrollbar.grid :column => 1, :row => 2, :sticky => 'ns'
     @h_scrollbar.grid :column => 0, :row => 3, :sticky => 'ew'
 
+    # How expand is handled
     # :weight => 0 Do NOT expand widget when changing size
     # :weight => 1 expand widget when changing size
     TkGrid.columnconfigure( root, 0, :weight => 1 )

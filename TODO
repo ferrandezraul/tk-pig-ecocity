@@ -1,10 +1,10 @@
-Leer mas sobre geometry manager y grid.
-Probarlo en ejercicios
+Crear ProductsTableView  extaer codigo de MainWindow
+   Visualizar subproductos en el Tree
+Crear CustomersTableView
 
 Eliminar primera columna en TreeView
 Anyadir todos las columnas de los productos
 Decorarlas con EUR, kg o lo que sea
-
 
 El Widget NoteBook puede ser interesante.
  Ir siguiendo creando menus pensando en la arquitectura:
