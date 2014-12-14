@@ -11,9 +11,8 @@ class ProductsView
     @column_ids = [ 'name', 'price_shop', 'price_coope', 'price_pvp', 'iva', 'price_type']
     @column_names = [ 'Nom', 'Preu Tenda', 'Preu Coope', 'Preu PVP', 'IVA', 'Tipus']
 
-    @tree = Tk::Tile::Treeview.new( args[:parent]) {
-      columns 'name price_shop price_coope price_pvp iva price_type'
-    }
+    @tree = Tk::Tile::Treeview.new( args[:parent])
+    @tree['columns'] = @column_ids
 
     font = Ttk::Style.lookup( @tree[:style], :font )
 
