@@ -8,11 +8,11 @@ require 'tkextlib/tile'
 class ProductsView
 
   def initialize( args )
-    @column_ids = [ 'name', 'price_shop', 'price_coope', 'price_pvp']
-    @column_names = [ 'Nom', 'Preu Tenda', 'Preu Coope', 'Preu PVP']
+    @column_ids = [ 'name', 'price_shop', 'price_coope', 'price_pvp', 'iva', 'price_type']
+    @column_names = [ 'Nom', 'Preu Tenda', 'Preu Coope', 'Preu PVP', 'IVA', 'Tipus']
 
     @tree = Tk::Tile::Treeview.new( args[:parent]) {
-      columns 'name price_shop price_coope price_pvp'
+      columns 'name price_shop price_coope price_pvp iva price_type'
     }
 
     font = Ttk::Style.lookup( @tree[:style], :font )
@@ -39,12 +39,19 @@ class ProductsView
 
     # Insert nodes with product attributes as parent nodes of node with :id => 'products'
     args[:products].each{ | product |
+      product_columns = [ product.name,
+                          product.price_tienda,
+                          product.price_coope,
+                          product.price_pvp,
+                          product.iva,
+                          product.price_type ]
+
       # Inserted as children of node with :id => 'products' (root node)
-      @tree.insert( 'products', :end, :values => [ product.name, product.price_tienda, product.price_coope ] )
+      @tree.insert( 'products', :end, :values => product_columns )
 
       # Set column size based on length of data
       # Extracted from ~/.rvm/src/ruby-2.1.1/ext/tk/sample/demos-en/widget
-      @column_ids.zip( [product.name, product.price_tienda, product.price_coope] ).each{ | col, val |
+      @column_ids.zip( product_columns ).each{ | col, val |
         len = TkFont.measure( font, "#{ val }  ")
         if @tree.column_cget( col, :width ) < len
           @tree.column_configure( col, :width => len )
