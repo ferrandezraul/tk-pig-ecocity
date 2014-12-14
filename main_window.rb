@@ -1,7 +1,10 @@
 $:.unshift File.join( File.dirname( __FILE__ ), "lib" )
+$:.unshift File.join( File.dirname( __FILE__ ), "." )
 
 require 'tk'
 require 'tkextlib/tile'
+
+require 'products_view'
 
 class MainWindow
 
@@ -20,21 +23,8 @@ class MainWindow
 
     label = Tk::Tile::Label.new(content) { text 'Products:' }
 
-    @tree = Tk::Tile::Treeview.new(content) {
-      columns 'name description price'
-    }
-
-    @tree.heading_configure( 'name', :text => 'Nom')
-    @tree.heading_configure( 'description', :text => 'Descripció')
-    @tree.heading_configure( 'price', :text => 'Preu')
-
-    if Tk.windowingsystem != 'aqua'
-      @v_scrollbar = @tree.yscrollbar(Ttk::Scrollbar.new(content))
-      @h_scrollbar = @tree.xscrollbar(Ttk::Scrollbar.new(content))
-    else
-      @v_scrollbar = @tree.yscrollbar(Tk::Scrollbar.new(content))
-      @h_scrollbar = @tree.xscrollbar(Tk::Scrollbar.new(content))
-    end
+    products_view =  ProductsView.new( :parent => content,
+                                       :products => args[:products] )
 
     # All widgets are divided into columns and rows
     # grid call makes the widget visible
@@ -43,9 +33,7 @@ class MainWindow
     content.grid :column => 0, :row => 0, :sticky => 'nsew'
     frame.grid :column => 0, :row => 0, :sticky => 'nsew'
     label.grid :column => 0, :row => 1, :sticky => 'nw'
-    @tree.grid :column => 0, :row => 2, :sticky => 'nsew'
-    @v_scrollbar.grid :column => 1, :row => 2, :sticky => 'ns'
-    @h_scrollbar.grid :column => 0, :row => 3, :sticky => 'ew'
+    products_view.grid
 
     # How expand is handled
     # :weight => 0 Do NOT expand widget when changing size
@@ -57,11 +45,6 @@ class MainWindow
     TkGrid.rowconfigure( content, 0, :weight => 0 )
     TkGrid.rowconfigure( content, 1, :weight => 0 )
     TkGrid.rowconfigure( content, 2, :weight => 1 )
-
-    ## Code to insert the data nicely
-    args[:products].each{ | product |
-      @tree.insert( '', :end, :values=>[ product.name, product.price_tienda, product.price_coope] )
-    }
 
     # start eventloop
     Tk.mainloop
