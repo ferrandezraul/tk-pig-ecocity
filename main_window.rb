@@ -22,7 +22,6 @@ class MainWindow
     frame = Tk::Tile::Frame.new(content) { padding "3 3 12 12" }
 
     label = Tk::Tile::Label.new(content) { text 'Products:' }
-
     products_view =  ProductsView.new( :parent => content,
                                        :products => args[:products] )
 

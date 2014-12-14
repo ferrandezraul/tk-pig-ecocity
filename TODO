@@ -1,13 +1,12 @@
-Crear ProductsTableView  extaer codigo de MainWindow
-   Visualizar subproductos en el Tree
-Crear CustomersTableView
+1. Create new project and try to create a class that inherits Tk::Tile::Treeview
+   See doc from Tk to see which functions must be reimplemented while inheriting.
 
-Eliminar primera columna en TreeView
-Anyadir todos las columnas de los productos
-Decorarlas con EUR, kg o lo que sea
+2. Create Notebook widget in MainWindow
+   See example in ~/.rvm/src/ruby-2.1.5/ext/tk/sample/demos-en
 
-El Widget NoteBook puede ser interesante.
- Ir siguiendo creando menus pensando en la arquitectura:
+3. Crear CustomersTableView
+
+4. Ir siguiendo creando menus pensando en la arquitectura:
     - Productes, para ver los productos
     - Customers, para ver los customers
     - Comandes, para ver las orders
