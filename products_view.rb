@@ -8,8 +8,9 @@ require 'tkextlib/tile'
 class ProductsView
 
   def initialize( args )
-    @column_ids = [ 'name', 'price_shop', 'price_coope', 'price_pvp', 'iva', 'price_type']
+    @column_ids = %w( name price_shop price_coope price_pvp iva price_type )
     @column_names = [ 'Nom', 'Preu Tenda', 'Preu Coope', 'Preu PVP', 'IVA', 'Tipus']
+    @tree_root_id = 'products'
 
     @tree = Tk::Tile::Treeview.new( args[:parent])
     @tree['columns'] = @column_ids
@@ -31,10 +32,10 @@ class ProductsView
 
     ## Code to insert the data nicely
     # root node in tree
-    @tree.insert( '', 'end', :id => 'products', :text => 'Productes')
+    @tree.insert( '', 'end', :id => @tree_root_id, :text => 'Productes')
 
     # Expand (open) node. By default nodes are not open
-    @tree.itemconfigure('products', 'open', true);
+    @tree.itemconfigure( @tree_root_id, 'open', true);
 
     # Insert nodes with product attributes as parent nodes of node with :id => 'products'
     args[:products].each{ | product |
@@ -45,8 +46,8 @@ class ProductsView
                           product.iva,
                           product.price_type ]
 
-      # Inserted as children of node with :id => 'products' (root node)
-      @tree.insert( 'products', :end, :values => product_columns )
+      # Inserted as children of node with :id => @tree_root_id (root node)
+      @tree.insert( @tree_root_id, :end, :values => product_columns )
 
       # Set column size based on length of data
       # Extracted from ~/.rvm/src/ruby-2.1.1/ext/tk/sample/demos-en/widget
