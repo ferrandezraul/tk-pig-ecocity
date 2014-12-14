@@ -61,16 +61,14 @@ class ProductsView
       # Inserted as children of node with :id => @tree_root_id (root node)
       product_item = @tree.insert( TREE_ROOT_ID, :end, :values => product_columns )
 
-      if product.has_options?
-        product.options.each { | option |
-          option = "#{option.quantity} x #{option.weight} Kg #{option.name}"
-          @tree.insert( product_item.id, :end, :text => option )
-        }
-     end
+      product.options.each { |option|
+        option = "#{option.quantity} x #{option.weight} Kg #{option.name}"
+        @tree.insert(product_item.id, :end, :text => option)
+      } if product.has_options?
 
 
       # Set column size based on length of data
-      # Extracted from ~/.rvm/src/ruby-2.1.1/ext/tk/sample/demos-en/widget
+      # Extracted from /.rvm/src/ruby-2.1.1/ext/tk/sample/demos-en/widget
       COLUMN_IDS.zip( product_columns ).each{ | col, val |
         len = TkFont.measure( font, "#{ val }  ")
         if @tree.column_cget( col, :width ) < len
