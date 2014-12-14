@@ -52,9 +52,9 @@ class ProductsView
     args[:products].each{ | product |
       product_columns = [ product.name,
                           "#{ product.price_tienda } EUR",
-                          product.price_coope,
-                          product.price_pvp,
-                          product.iva,
+                          "#{ product.price_coope } EUR",
+                          "#{ product.price_pvp } EUR",
+                          "#{ product.iva } %",
                           product.price_type ]
 
       # Inserted as children of node with :id => @tree_root_id (root node)
