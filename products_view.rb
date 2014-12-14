@@ -1,6 +1,7 @@
 $:.unshift File.join( File.dirname( __FILE__ ), "lib" )
 
 require 'product'
+require 'subproduct'
 
 require 'tk'
 require 'tkextlib/tile'
@@ -58,7 +59,15 @@ class ProductsView
                           product.price_type ]
 
       # Inserted as children of node with :id => @tree_root_id (root node)
-      @tree.insert( TREE_ROOT_ID, :end, :values => product_columns )
+      product_item = @tree.insert( TREE_ROOT_ID, :end, :values => product_columns )
+
+      if product.has_options?
+        product.options.each { | option |
+          option = "#{option.quantity} x #{option.weight} Kg #{option.name}"
+          @tree.insert( product_item.id, :end, :text => option )
+        }
+     end
+
 
       # Set column size based on length of data
       # Extracted from ~/.rvm/src/ruby-2.1.1/ext/tk/sample/demos-en/widget
