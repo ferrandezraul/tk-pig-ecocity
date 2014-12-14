@@ -64,7 +64,7 @@ class ProductsView
       product.options.each_with_index { |option, index|
         option = "#{option.quantity} x #{option.weight} Kg #{option.name}"
         option_columns = [ option ]
-        @tree.insert( product_item, 'end', :values => option_columns )
+        @tree.insert( product_item, 'end', :text => "Opció #{index + 1}", :values => option_columns )
       } if product.has_options?
 
 
