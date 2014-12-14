@@ -9,7 +9,7 @@ require 'tkextlib/tile'
 class ProductsView
   COLUMN_IDS = %w( name price_shop price_coope price_pvp iva price_type )
   COLUMN_NAMES = [ 'Nom', 'Preu Tenda', 'Preu Coope', 'Preu PVP', 'IVA', 'Tipus']
-  TREE_ROOT_ID = 'products'
+  ROOT_TREE_NODE_ID = 'Productes'
 
   def initialize( args )
     @tree = Tk::Tile::Treeview.new( args[:parent] )
@@ -44,10 +44,10 @@ class ProductsView
 
     ## Code to insert the data nicely
     # root node in tree
-    @tree.insert( '', 'end', :id => TREE_ROOT_ID, :text => 'Productes')
+    @root_tree_node = @tree.insert( nil, 'end', :text => ROOT_TREE_NODE_ID )
 
     # Expand (open) node. By default nodes are not open
-    @tree.itemconfigure( TREE_ROOT_ID, 'open', true);
+    @tree.itemconfigure( @root_tree_node.id, 'open', true);
 
     # Insert nodes with product attributes as parent nodes of node with :id => 'products'
     args[:products].each{ | product |
@@ -59,11 +59,12 @@ class ProductsView
                           product.price_type ]
 
       # Inserted as children of node with :id => @tree_root_id (root node)
-      product_item = @tree.insert( TREE_ROOT_ID, :end, :values => product_columns )
+      product_item = @tree.insert( @root_tree_node, :end, :values => product_columns )
 
-      product.options.each { |option|
+      product.options.each_with_index { |option, index|
         option = "#{option.quantity} x #{option.weight} Kg #{option.name}"
-        @tree.insert(product_item.id, :end, :text => option)
+        option_columns = [ option ]
+        @tree.insert( product_item, 'end', :values => option_columns )
       } if product.has_options?
 
 
