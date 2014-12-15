@@ -2,6 +2,7 @@ $:.unshift File.join( File.dirname( __FILE__ ), "lib" )
 
 require 'product'
 require 'subproduct'
+require 'logger'
 
 require 'tk'
 require 'tkextlib/tile'
@@ -25,6 +26,17 @@ class ProductsView
 
     # Expand (open) node. By default nodes are not open
     @tree.itemconfigure( @root_tree_node.id, 'open', true);
+
+    @log = Logger.new('ProductsView.log', 'daily')
+    @log.debug( 'Hello logger' )
+
+    # Style is done via tags. See http://www.tkdocs.com/tutorial/tree.html
+    @tree.tag_configure( 'sub_product', :background => 'grey' )
+    # font = Ttk::Style.lookup( @tree[:style], :font )
+    # @tree.tag_configure( 'sub_product', :font => "#{font.family} #{font.size} italic" )
+
+    # In case you want to do some action if item clicked
+    #tree.tag_bind('ttk', '1', proc{ itemclicked } ); # the item clicked can be found via 'tree.focus_item'
   end
 
   def grid( args )
@@ -91,7 +103,7 @@ class ProductsView
       product.options.each_with_index { |option, index|
         option = "#{option.quantity} x #{option.weight} Kg #{option.name}"
         option_columns = [ option ]
-        @tree.insert( product_item, 'end', :text => "Opció #{index + 1}", :values => option_columns )
+        @tree.insert( product_item, 'end', :text => "Opció #{index + 1}", :values => option_columns, :tags => ['sub_product'] )
       } if product.has_options?
 
 
