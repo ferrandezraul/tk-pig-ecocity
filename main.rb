@@ -1,55 +1,24 @@
-require 'tk'
+$:.unshift File.join( File.dirname( __FILE__ ), "lib" )
+$:.unshift File.join( File.dirname( __FILE__ ), "." )
 
-def aboutBox
-  Tk.messageBox('icon'=>'info', 'type'=>'ok', 'title'=>'About Ecocity Demo',
-                'message'=> "Ecocity Demo\n\n" +
-                    "Copyright:: (c) 2014 Raul Ferrandez \n" +
-                    "Your Ruby & Tk Version ::\n" +
-                    "Ruby #{RUBY_VERSION} \n" +
-                    "Released on #{RUBY_RELEASE_DATE} [#{RUBY_PLATFORM}] \n" +
-                    "Tk#{$tk_patchlevel} #{(Tk::JAPANIZED_TK)? '-jp': ''}\n\n" +
-                    "Ruby/Tk release date :: tcltklib #{TclTkLib::RELEASE_DATE}; tk #{Tk::RELEASE_DATE}")
+require 'product_csv'
+require 'errors'
+require 'main_window'
+
+ORDERS_JSON_PATH = ::File.join( File.dirname( __FILE__ ), "csv/orders.json" )
+PRODUCTS_CSV_PATH = ::File.join( File.dirname( __FILE__ ), "csv/products.csv" )
+CUSTOMERS_CSV_PATH = ::File.join( File.dirname( __FILE__ ), "csv/customers.csv" )
+ORDERS_CSV_PATH = ::File.join( File.dirname( __FILE__ ), "csv/orders.csv" )
+
+def load_products
+  begin
+    ProductCSV.read( PRODUCTS_CSV_PATH )
+  rescue Errors::ProductCSVError => e
+    alert e.message
+  end
 end
 
-def seeProducts
-  Tk.messageBox('icon'=>'info', 'type'=>'ok', 'title'=>'Productes', 'message'=> "Todo ..." )
-end
+products = load_products
 
-def seeCustomers
-  Tk.messageBox('icon'=>'info', 'type'=>'ok', 'title'=>'About Ecocity Demo', 'message'=> "To do ..." )
-end
+MainWindow.new( :products => products )
 
-########################################## Start here ##################################################################
-
-# root
-$root = TkRoot.new{ title "Porc Ecocity" }
-
-
-# See tk/menuspec.rb for menu_spec.
-# http://www.ruby-doc.org/stdlib-2.0/libdoc/tk/rdoc/TkMenuSpec.html
-menu_spec = [
-              [
-                [ 'File', 0 ],
-                [ 'About ... ', proc{aboutBox}, 0, '<F1>' ],
-                [ 'Quit', proc{exit}, 0, 'Ctrl-Q' ]
-              ],
-              [
-                [ 'Productes', 0 ],
-                [ 'Veure Productes', proc{ seeProducts } ]
-              ],
-              [
-                ['Clients', 0],
-                ['Veure Clients', proc{ seeCustomers } ]
-              ]
-            ]
-
-# TkRoot::add_menubar(menu_spec, tearoff=false, opts=nil) click to tog)
-# opts is a hash of default configs for all of cascade menus.
-# Configs of menu_spec can override it.
-$root.add_menubar( menu_spec )
-
-
-
-
-# start eventloop
-Tk.mainloop
