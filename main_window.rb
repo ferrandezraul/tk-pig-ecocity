@@ -38,7 +38,7 @@ class MainWindow
     # :sticky => ew When expanding, align it to east west
     content.grid :column => 0, :row => 0, :sticky => 'nsew'
     notebook.grid :column => 0, :row => 0, :sticky => 'nsew'
-    products_view.grid :column => 0, :row => 1
+    products_view.grid :column => 0, :row => 0
 
     # How expand is handled
     # :weight => 1 expand widget when changing size
@@ -46,13 +46,8 @@ class MainWindow
     TkGrid.columnconfigure root, 0, :weight => 1; TkGrid.rowconfigure root, 0, :weight => 1
 
     TkGrid.columnconfigure content, 0, :weight => 1; TkGrid.rowconfigure content, 0, :weight => 1
-    TkGrid.columnconfigure content, 1, :weight => 0; TkGrid.rowconfigure( content, 1, :weight => 0 )
 
-    TkGrid.columnconfigure notebook, 0, :weight => 1; TkGrid.rowconfigure( notebook, 0, :weight => 1 )
-
-
-    TkGrid.columnconfigure notebook, 1, :weight => 1; TkGrid.rowconfigure( notebook, 0, :weight => 1 )
-    TkGrid.columnconfigure products_page, 1, :weight => 0; TkGrid.rowconfigure( products_page, 1, :weight => 1 )
+    TkGrid.columnconfigure products_page, 0, :weight => 1; TkGrid.rowconfigure( products_page, 0, :weight => 1 )
 
     # start eventloop
     Tk.mainloop
