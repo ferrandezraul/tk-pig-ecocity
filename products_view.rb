@@ -27,7 +27,7 @@ class ProductsView
     # Expand (open) node. By default nodes are not open
     @tree.itemconfigure( @root_tree_node.id, 'open', true)
 
-    @log = Logger.new('ProductsView.log', 'daily')
+    @log = Logger.new('log/ProductsView.log', 'daily')
     @log.debug( 'Hello logger' )
 
     # Style is done via tags. See http://www.tkdocs.com/tutorial/tree.html
