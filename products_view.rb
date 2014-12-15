@@ -28,7 +28,7 @@ class ProductsView
     @tree.itemconfigure( @root_tree_node.id, 'open', true)
 
     @log = Logger.new('log/ProductsView.log', 'daily')
-    @log.debug( 'Hello logger' )
+    #@log.debug( 'Hello logger' )
 
     # Style is done via tags. See http://www.tkdocs.com/tutorial/tree.html
     @tree.tag_configure( 'sub_product', :background => 'grey' )
@@ -73,7 +73,6 @@ class ProductsView
   end
 
   def create_scrollbars( parent )
-    # Create scrollbars
     if Tk.windowingsystem != 'aqua'
       @v_scrollbar = @tree.yscrollbar(Ttk::Scrollbar.new( parent ) )
       @h_scrollbar = @tree.xscrollbar(Ttk::Scrollbar.new( parent ) )

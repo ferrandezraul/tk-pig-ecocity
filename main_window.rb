@@ -5,10 +5,14 @@ require 'tk'
 require 'tkextlib/tile'
 
 require 'products_view'
+require 'customers_view'
 
 class MainWindow
 
   def initialize(args)
+    @products = args[:products] || Array.new
+    @customers = args[:customers] || Array.new
+
     # root
     @root = TkRoot.new{ title "Porc Ecocity" }
 
@@ -25,7 +29,9 @@ class MainWindow
     @customers_page = Tk::Tile::Frame.new( @notebook )  # second page
 
     @products_view =  ProductsView.new( :parent => @products_page,
-                                        :products => args[:products] )
+                                        :products => @products )
+    @customers_view = CustomersView.new( :parent => @customers_page,
+                                         :customers => @customers )
 
     @notebook.add @products_page, :text => 'Products', :sticky => 'nswe'
     @notebook.add @customers_page, :text => 'Customers', :sticky => 'nswe'
@@ -71,7 +77,7 @@ class MainWindow
   end
 
   def see_products
-    Tk.messageBox('icon'=>'info', 'type'=>'ok', 'title'=>'Productes', 'message'=> "Todo ..." )
+    @notebook.select( @products_page )
   end
 
   def see_customers
@@ -86,6 +92,7 @@ class MainWindow
     @content.grid :column => 0, :row => 0, :sticky => 'nsew'
     @notebook.grid :column => 0, :row => 0, :sticky => 'nsew'
     @products_view.grid :column => 0, :row => 0
+    @customers_view.grid :column => 0, :row => 0
 
     # How expand is handled
     # :weight => 1 expand widget when changing size
@@ -95,6 +102,7 @@ class MainWindow
     TkGrid.columnconfigure @content, 0, :weight => 1; TkGrid.rowconfigure @content, 0, :weight => 1
 
     TkGrid.columnconfigure @products_page, 0, :weight => 1; TkGrid.rowconfigure( @products_page, 0, :weight => 1 )
+    TkGrid.columnconfigure @customers_page, 0, :weight => 1; TkGrid.rowconfigure( @customers_page, 0, :weight => 1 )
   end
 
 end

@@ -2,6 +2,7 @@ $:.unshift File.join( File.dirname( __FILE__ ), "lib" )
 $:.unshift File.join( File.dirname( __FILE__ ), "." )
 
 require 'product_csv'
+require 'customers_csv'
 require 'errors'
 require 'main_window'
 
@@ -18,7 +19,17 @@ def load_products
   end
 end
 
-products = load_products
+def load_customers
+  begin
+    CustomerCSV.read( CUSTOMERS_CSV_PATH )
+  rescue Errors::CustomersCSVError => e
+    alert e.message
+  end
+end
 
-MainWindow.new( :products => products )
+products = load_products
+customers = load_customers
+
+MainWindow.new( :products => products,
+                :customers => customers )
 
