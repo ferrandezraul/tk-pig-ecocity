@@ -3,9 +3,11 @@ require 'tk'
 def aboutBox
   Tk.messageBox('icon'=>'info', 'type'=>'ok', 'title'=>'About Ecocity Demo',
                 'message'=> "Ecocity Demo\n\n" +
-                    "Copyright:: (c) 2014 Raul Ferrandez / " +
+                    "Copyright:: (c) 2014 Raul Ferrandez \n" +
                     "Your Ruby & Tk Version ::\n" +
-                    "Ruby#{RUBY_VERSION}(#{RUBY_RELEASE_DATE})[#{RUBY_PLATFORM}] / Tk#{$tk_patchlevel}#{(Tk::JAPANIZED_TK)? '-jp': ''}\n\n" +
+                    "Ruby #{RUBY_VERSION} \n" +
+                    "Released on #{RUBY_RELEASE_DATE} [#{RUBY_PLATFORM}] \n" +
+                    "Tk#{$tk_patchlevel} #{(Tk::JAPANIZED_TK)? '-jp': ''}\n\n" +
                     "Ruby/Tk release date :: tcltklib #{TclTkLib::RELEASE_DATE}; tk #{Tk::RELEASE_DATE}")
 end
 
@@ -17,9 +19,7 @@ def seeCustomers
   Tk.messageBox('icon'=>'info', 'type'=>'ok', 'title'=>'About Ecocity Demo', 'message'=> "To do ..." )
 end
 
-########################################################################################################################
 ########################################## Start here ##################################################################
-########################################################################################################################
 
 # root
 $root = TkRoot.new{ title "Porc Ecocity" }

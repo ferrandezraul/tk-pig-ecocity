@@ -45,11 +45,18 @@ configinfo
 ////////////////  Geometry Management  //////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 
-The "grid" command, where you can pass along the column and row you want each widget to go in,
+"grid" command, where you can pass along the column and row you want each widget to go in,
 how things are aligned within a grid, and so on. Grid is an example of a geometry manager
 (of which there are several in Tk, grid being the most useful).
+
+"pack" is also quite powerful, but harder to use and understand; Use grid!! and not pack.
+Grid has all the power of pack, generally produces nicer layouts. Use always grid!!
+
+"place" gives you complete control of positioning each element; we'll see even widgets like paned windows, notebooks, canvas and text can act as geometry managers.
+
 http://www.tkdocs.com/tutorial/concepts.html
 
 /////////////////////////////////////////////////////////////////////////////////////////
 ////////////////  Event Handling ///// //////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
+
