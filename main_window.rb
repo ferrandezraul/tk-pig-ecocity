@@ -24,13 +24,13 @@ class MainWindow
     @products_page = Tk::Tile::Frame.new( @notebook )   # first page, which would get widgets gridded into it
     @customers_page = Tk::Tile::Frame.new( @notebook )  # second page
 
+    @products_view =  ProductsView.new( :parent => @products_page,
+                                        :products => args[:products] )
+
     @notebook.add @products_page, :text => 'Products', :sticky => 'nswe'
     @notebook.add @customers_page, :text => 'Customers', :sticky => 'nswe'
 
     @notebook.enable_traversal
-
-    @products_view =  ProductsView.new( :parent => @products_page,
-                                       :products => args[:products] )
 
     # Draw widgets in grid
     grid

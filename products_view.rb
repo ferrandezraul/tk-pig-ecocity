@@ -11,7 +11,6 @@ class ProductsView
   COLUMN_NAMES = [ 'Nom', 'Preu Tenda', 'Preu Coope', 'Preu PVP', 'IVA', 'Tipus']
   ROOT_TREE_NODE_ID = 'Productes'
 
-
   # Draws a Tree displaying product attributes
   # args[:parent] Parent Tk widget
   # args[:products] List of products
@@ -84,7 +83,7 @@ class ProductsView
 
   end
 
-  def grid(args)
+  def grid( args )
     # All widgets are divided into columns and rows
     # grid call makes the widget visible
     # :sticky => nw When expanding, align it to north west
