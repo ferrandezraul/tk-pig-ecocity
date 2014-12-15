@@ -41,21 +41,22 @@ class ProductsView
     # Set column id's
     @tree['columns'] = COLUMN_IDS
 
-    # Get font
-    font = Ttk::Style.lookup( @tree[:style], :font )
-
     # Array.zip( array )
     # a = [ 4, 5, 6 ]
     # b = [ 7, 8, 9 ]
     # [ 1, 2, 3 ].zip( a, b ) #=> [ [1, 4, 7], [2, 5, 8], [3, 6, 9] ]
-    #
-    # Set headers in columns
     COLUMN_IDS.zip( COLUMN_NAMES ).each{ |col, val|
+      # Set heading in columns
       @tree.heading_configure( col, :text => val )
+
       # anchor => String
       # Alignment. Must be one of the values n, ne, e, se, s, sw, w, nw, or center.
-      # width of columns
-      @tree.column_configure( col, :width => TkFont.measure( font, val ) , :anchor => 'e' )
+      @tree.column_configure( col, :anchor => 'e' )
+
+      # In case I want to change width
+      # Get font
+      #font = Ttk::Style.lookup( @tree[:style], :font )
+      #@tree.column_configure( col, :width => TkFont.measure( font, val ) , :anchor => 'e' )
     }
   end
 
@@ -74,9 +75,6 @@ class ProductsView
     ## Code to insert the data nicely
     # root node in tree
     @root_tree_node = @tree.insert( nil, 'end', :text => ROOT_TREE_NODE_ID )
-
-    # Get font
-    font = Ttk::Style.lookup( @tree[:style], :font )
 
     # Insert nodes with product attributes as parent nodes of node with :id => 'products'
     products.each{ | product |
@@ -99,12 +97,14 @@ class ProductsView
 
       # Set column size based on length of data
       # Extracted from /.rvm/src/ruby-2.1.1/ext/tk/sample/demos-en/widget
-      COLUMN_IDS.zip( product_columns ).each{ | col, val |
-        len = TkFont.measure( font, "#{ val }  ")
-        if @tree.column_cget( col, :width ) < len
-          @tree.column_configure( col, :width => len )
-        end
-      }
+      #COLUMN_IDS.zip( product_columns ).each{ | col, val |
+      #  # Get font
+      #  font = Ttk::Style.lookup( @tree[:style], :font )
+      #  len = TkFont.measure( font, "#{ val }  ")
+      #  if @tree.column_cget( col, :width ) < len
+      #    @tree.column_configure( col, :width => len )
+      #  end
+      #}
     }
   end
 
