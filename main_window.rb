@@ -19,10 +19,17 @@ class MainWindow
 
     content = Tk::Tile::Frame.new(root)
 
-    frame = Tk::Tile::Frame.new(content) { padding "3 3 12 12" }
+    notebook = Tk::Tile::Notebook.new(content)
 
-    label = Tk::Tile::Label.new(content) { text 'Products:' }
-    products_view =  ProductsView.new( :parent => content,
+    products_page = Tk::Tile::Frame.new(notebook)   # first page, which would get widgets gridded into it
+    customers_page = Tk::Tile::Frame.new(notebook)  # second page
+
+    notebook.add products_page, :text => 'Products', :sticky => 'nswe'
+    notebook.add customers_page, :text => 'Customers', :sticky => 'nswe'
+
+    notebook.enable_traversal
+
+    products_view =  ProductsView.new( :parent => products_page,
                                        :products => args[:products] )
 
     # All widgets are divided into columns and rows
@@ -30,19 +37,22 @@ class MainWindow
     # :sticky => nw When expanding, align it to north west
     # :sticky => ew When expanding, align it to east west
     content.grid :column => 0, :row => 0, :sticky => 'nsew'
-    frame.grid :column => 0, :row => 0, :sticky => 'nsew'
-    label.grid :column => 0, :row => 1, :sticky => 'nw'
-    products_view.grid :column => 0, :row => 2
+    notebook.grid :column => 0, :row => 0, :sticky => 'nsew'
+    products_view.grid :column => 0, :row => 1
 
     # How expand is handled
     # :weight => 1 expand widget when changing size
-    TkGrid.columnconfigure( root, 0, :weight => 1 )     # Expand column with root
-    TkGrid.rowconfigure( root, 0, :weight => 1 )        # Expand row with root
+    # Expand columns and rows with root
+    TkGrid.columnconfigure root, 0, :weight => 1; TkGrid.rowconfigure root, 0, :weight => 1
 
-    TkGrid.columnconfigure( content, 0, :weight => 1 )  # Expand column with content
-    TkGrid.rowconfigure( content, 0, :weight => 0 )     # DO NOT Expand row with content
-    TkGrid.rowconfigure( content, 1, :weight => 0 )     # DO NOT Expand row with label
-    TkGrid.rowconfigure( content, 2, :weight => 1 )     # Expand row with products_view
+    TkGrid.columnconfigure content, 0, :weight => 1; TkGrid.rowconfigure content, 0, :weight => 1
+    TkGrid.columnconfigure content, 1, :weight => 0; TkGrid.rowconfigure( content, 1, :weight => 0 )
+
+    TkGrid.columnconfigure notebook, 0, :weight => 1; TkGrid.rowconfigure( notebook, 0, :weight => 1 )
+
+
+    TkGrid.columnconfigure notebook, 1, :weight => 1; TkGrid.rowconfigure( notebook, 0, :weight => 1 )
+    TkGrid.columnconfigure products_page, 1, :weight => 0; TkGrid.rowconfigure( products_page, 1, :weight => 1 )
 
     # start eventloop
     Tk.mainloop

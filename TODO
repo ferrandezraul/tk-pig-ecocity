@@ -1,3 +1,5 @@
+Fix TkGrid.columnconfigure
+
 1. Create new project and try to create a class that inherits Tk::Tile::Treeview
    See doc from Tk to see which functions must be reimplemented while inheriting.
 
