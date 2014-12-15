@@ -14,4 +14,8 @@ Fix TkGrid.columnconfigure
     - Comandes, para ver las orders
     - Etc ...
 
+5. A way to test the UI might be to use the a logger, log info and use that file
+   to write some cucumber scenarios.
+   @log = Logger.new('ProductsView.log', 'daily')
+
 
