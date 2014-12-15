@@ -17,6 +17,27 @@ class ProductsView
   def initialize( args )
     @tree = Tk::Tile::Treeview.new( args[:parent] )
 
+    set_headers
+
+    create_scrollbars( args[:parent] )
+
+    insert_data( args[:products] )
+
+    # Expand (open) node. By default nodes are not open
+    @tree.itemconfigure( @root_tree_node.id, 'open', true);
+  end
+
+  def grid( args )
+    # All widgets are divided into columns and rows
+    # grid call makes the widget visible
+    # :sticky => nw When expanding, align it to north west
+    # :sticky => ew When expanding, align it to east west
+    @tree.grid :column => args[:column], :row => args[:row], :sticky => 'nsew'
+    @v_scrollbar.grid :column => args[:column] + 1, :row => args[:row], :sticky => 'ns'
+    @h_scrollbar.grid :column => args[:column], :row => args[:row ] +1, :sticky => 'ew'
+  end
+
+  def set_headers
     # Set column id's
     @tree['columns'] = COLUMN_IDS
 
@@ -33,27 +54,32 @@ class ProductsView
       @tree.heading_configure( col, :text => val )
       # anchor => String
       # Alignment. Must be one of the values n, ne, e, se, s, sw, w, nw, or center.
-      @tree.column_configure( col, :width => TkFont.measure( font, val ), :anchor => 'e' )
+      # width of columns
+      @tree.column_configure( col, :width => TkFont.measure( font, val ) , :anchor => 'e' )
     }
+  end
 
+  def create_scrollbars( parent )
     # Create scrollbars
     if Tk.windowingsystem != 'aqua'
-      @v_scrollbar = @tree.yscrollbar(Ttk::Scrollbar.new(args[:parent]))
-      @h_scrollbar = @tree.xscrollbar(Ttk::Scrollbar.new(args[:parent]))
+      @v_scrollbar = @tree.yscrollbar(Ttk::Scrollbar.new( parent ) )
+      @h_scrollbar = @tree.xscrollbar(Ttk::Scrollbar.new( parent ) )
     else
-      @v_scrollbar = @tree.yscrollbar(Tk::Scrollbar.new(args[:parent]))
-      @h_scrollbar = @tree.xscrollbar(Tk::Scrollbar.new(args[:parent]))
+      @v_scrollbar = @tree.yscrollbar(Tk::Scrollbar.new( parent ) )
+      @h_scrollbar = @tree.xscrollbar(Tk::Scrollbar.new( parent ) )
     end
+  end
 
+  def insert_data( products )
     ## Code to insert the data nicely
     # root node in tree
     @root_tree_node = @tree.insert( nil, 'end', :text => ROOT_TREE_NODE_ID )
 
-    # Expand (open) node. By default nodes are not open
-    @tree.itemconfigure( @root_tree_node.id, 'open', true);
+    # Get font
+    font = Ttk::Style.lookup( @tree[:style], :font )
 
     # Insert nodes with product attributes as parent nodes of node with :id => 'products'
-    args[:products].each{ | product |
+    products.each{ | product |
       product_columns = [ product.name,
                           "#{ product.price_tienda } EUR",
                           "#{ product.price_coope } EUR",
@@ -80,17 +106,6 @@ class ProductsView
         end
       }
     }
-
-  end
-
-  def grid( args )
-    # All widgets are divided into columns and rows
-    # grid call makes the widget visible
-    # :sticky => nw When expanding, align it to north west
-    # :sticky => ew When expanding, align it to east west
-    @tree.grid :column => args[:column], :row => args[:row], :sticky => 'nsew'
-    @v_scrollbar.grid :column => args[:column] + 1, :row => args[:row], :sticky => 'ns'
-    @h_scrollbar.grid :column => args[:column], :row => args[:row ] +1, :sticky => 'ew'
   end
 
 end
