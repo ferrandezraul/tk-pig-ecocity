@@ -25,7 +25,7 @@ class ProductsView
     insert_data( args[:products] )
 
     # Expand (open) node. By default nodes are not open
-    @tree.itemconfigure( @root_tree_node.id, 'open', true);
+    @tree.itemconfigure( @root_tree_node.id, 'open', true)
 
     @log = Logger.new('ProductsView.log', 'daily')
     @log.debug( 'Hello logger' )
