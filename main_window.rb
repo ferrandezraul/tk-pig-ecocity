@@ -54,15 +54,15 @@ class MainWindow
         [
             [ 'File', 0 ],
             [ 'About ... ', proc{about_box}, 0, '<F1>' ],
-            [ 'Quit', proc{exit}, 0, 'Ctrl-Q' ]
+            [ 'Quit', proc{ exit }, 0, 'Ctrl-Q' ]
         ],
         [
             [ 'Productes', 0 ],
-            [ 'Veure Productes', proc{ see_products } ]
+            [ 'Veure Productes', proc{ @notebook.select( @products_page ) } ]
         ],
         [
             ['Clients', 0],
-            ['Veure Clients', proc{ see_customers } ]
+            ['Veure Clients', proc{ @notebook.select( @customers_page ) } ]
         ]
     ]
   end
@@ -74,14 +74,6 @@ class MainWindow
                   "Your Ruby & Tk Version ::\n" +
                   "Ruby#{RUBY_VERSION}(#{RUBY_RELEASE_DATE})[#{RUBY_PLATFORM}] / Tk#{$tk_patchlevel}#{(Tk::JAPANIZED_TK)? '-jp': ''}\n\n" +
                   "Ruby/Tk release date :: tcltklib #{TclTkLib::RELEASE_DATE}; tk #{Tk::RELEASE_DATE}")
-  end
-
-  def see_products
-    @notebook.select( @products_page )
-  end
-
-  def see_customers
-    Tk.messageBox('icon'=>'info', 'type'=>'ok', 'title'=>'About Ecocity Demo', 'message'=> "TO do" )
   end
 
   def grid
