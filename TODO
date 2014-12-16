@@ -1,12 +1,11 @@
-Fix TkGrid.columnconfigure
+1. Check examples in ~/.rvm/src/ruby-2.1.1/ext/tk
+   and see how other windows are tied to the main window.
+   And also how destruction is handled.
 
-1. Create new project and try to create a class that inherits Tk::Tile::Treeview
+2. Apply leassons learned from point 1.
+
+3. Create new project and try to create a class that inherits Tk::Tile::Treeview
    See doc from Tk to see which functions must be reimplemented while inheriting.
-
-2. Create Notebook widget in MainWindow
-   See example in ~/.rvm/src/ruby-2.1.5/ext/tk/sample/demos-en
-
-3. Crear CustomersTableView
 
 4. Ir siguiendo creando menus pensando en la arquitectura:
     - Productes, para ver los productos
