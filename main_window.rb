@@ -7,6 +7,7 @@ require 'tkextlib/tile'
 require 'products_view'
 require 'customers_view'
 require 'orders_view'
+require 'date_dialog'
 
 require 'date'
 require 'logger'
@@ -83,37 +84,8 @@ class MainWindow
   end
 
   def new_order
-    date_dialog = TkToplevel.new( @root ) { title( "Data de la comanda" ) }
-    base_frame = TkFrame.new(date_dialog).pack( :fill=>:both, :expand => true )
-    TkLabel.new(base_frame) {
-      justify 'left'
-      text "Selecciona la data de la comanda"
-    }.pack( 'side' => 'left', 'padx'=>'.5c')
+    DateDialog.new(@root)
 
-    date = TkVariable.new( Date.today )
-    TkFrame.new(base_frame) { |frame|
-      Tk::Tile::Entry.new(frame) { textvariable date }.pack( 'expand' => 'yes' )
-    }.pack( 'fill'=> 'x', 'pady'=> '2m' )
-
-    TkFrame.new(base_frame) {|frame|
-      TkButton.new(frame) {
-        text 'Cancelar'
-        command proc {
-          tmppath = date_dialog
-          date_dialog = nil
-          tmppath.destroy
-        }
-      }.pack('side'=>'left', 'expand'=>'yes')
-
-      TkButton.new(frame) {
-        text 'Acceptar'
-        command proc { Tk.messageBox('icon'=>'info', 'type'=>'ok', 'title'=>'About Ecocity Demo', 'message'=> "Catched date #{date.to_s}")
-                       tmppath = date_dialog
-                       date_dialog = nil
-                       tmppath.destroy }
-
-      }.pack( 'side' => 'left', 'expand'=> 'yes' )
-    }.pack( 'side' => 'bottom', 'fill'=> 'x', 'pady'=> '2m' )
   end
 
   def about_box
