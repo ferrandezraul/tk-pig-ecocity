@@ -1,4 +1,8 @@
 0. Create a unique logger instance that writes in an unique log file.
+0. Clean up DateDialog
+   Handle cases when cancel is pressed
+   Test it.
+   Create more dialogs and reduce MainWindow
 
 1. Check examples in ~/.rvm/src/ruby-2.1.1/ext/tk
    and see how other windows are tied to the main window.
