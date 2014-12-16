@@ -84,7 +84,7 @@ class MainWindow
   def new_order
     $log.debug( 'MainWindow -> Create new order' )
     DateDialog.get_date(@root) { |date|
-      Tk.messageBox('icon'=>'info', 'type'=>'ok', 'title'=>'About Ecocity Demo', 'message'=> "Catched date #{date.to_s}" )
+      Tk.messageBox('icon'=>'info', 'type'=>'ok', 'title'=>'About Ecocity Demo', 'message'=> "Catched date #{date.to_s}" ) if date
     }
   end
 

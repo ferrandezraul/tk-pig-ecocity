@@ -3,6 +3,8 @@ require 'date'
 
 class DateDialog
 
+  # Widget that provides user with input data for a date
+  # Returns date specified by user or false in case user press cancel
   def self.get_date( parent )
     date_dialog = TkToplevel.new( parent ) { title( 'Data de la comanda' ) }
     base_frame = TkFrame.new(date_dialog).pack( :fill=>:both, :expand => true )
@@ -20,6 +22,7 @@ class DateDialog
       TkButton.new(frame) {
         text 'Cancelar'
         command proc {
+          yield false
           tmppath = date_dialog
           date_dialog = nil
           tmppath.destroy
