@@ -10,7 +10,6 @@ require 'orders_view'
 require 'date_dialog'
 
 require 'date'
-require 'logger'
 
 class MainWindow
 
@@ -18,7 +17,6 @@ class MainWindow
     @products = args[:products] || Array.new
     @customers = args[:customers] || Array.new
     @orders = args[:orders] || Array.new
-    @log = Logger.new('log/MainWindow.log', 'daily')
 
     # root
     @root = TkRoot.new{ title "Porc Ecocity" }
@@ -84,6 +82,7 @@ class MainWindow
   end
 
   def new_order
+    $log.debug( 'MainWindow -> Create new order' )
     DateDialog.get_date(@root) { |date|
       Tk.messageBox('icon'=>'info', 'type'=>'ok', 'title'=>'About Ecocity Demo', 'message'=> "Catched date #{date.to_s}" )
     }

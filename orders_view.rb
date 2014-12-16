@@ -1,7 +1,6 @@
 $:.unshift File.join( File.dirname( __FILE__ ), "lib" )
 
 require 'order'
-require 'logger'
 
 require 'tk'
 require 'tkextlib/tile'
@@ -27,9 +26,6 @@ class OrdersView
 
     # Expand (open) node. By default nodes are not open
     @tree.itemconfigure( @root_tree_node.id, 'open', true)
-
-    @log = Logger.new('log/OrdersView.log', 'daily')
-    # @log.debug( 'Hello logger' )
   end
 
   def grid( args )

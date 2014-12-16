@@ -1,4 +1,3 @@
-0. Create a unique logger instance that writes in an unique log file.
 0. Clean up DateDialog
    Handle cases when cancel is pressed
    Test it.
@@ -21,6 +20,6 @@
 
 5. A way to test the UI might be to use the a logger, log info and use that file
    to write some cucumber scenarios.
-   @log = Logger.new('ProductsView.log', 'daily')
+   $log = Logger.new('dev.log', 'daily')
 
 

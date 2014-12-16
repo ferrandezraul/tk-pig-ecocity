@@ -4,11 +4,11 @@ require 'date'
 class DateDialog
 
   def self.get_date( parent )
-    date_dialog = TkToplevel.new( parent ) { title( "Data de la comanda" ) }
+    date_dialog = TkToplevel.new( parent ) { title( 'Data de la comanda' ) }
     base_frame = TkFrame.new(date_dialog).pack( :fill=>:both, :expand => true )
     TkLabel.new(base_frame) {
       justify 'left'
-      text "Selecciona la data de la comanda"
+      text 'Selecciona la data de la comanda'
     }.pack( 'side' => 'left', 'padx'=>'.5c')
 
     date = TkVariable.new( Date.today )

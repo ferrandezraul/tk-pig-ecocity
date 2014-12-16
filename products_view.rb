@@ -2,7 +2,6 @@ $:.unshift File.join( File.dirname( __FILE__ ), "lib" )
 
 require 'product'
 require 'subproduct'
-require 'logger'
 
 require 'tk'
 require 'tkextlib/tile'
@@ -26,9 +25,6 @@ class ProductsView
 
     # Expand (open) node. By default nodes are not open
     @tree.itemconfigure( @root_tree_node.id, 'open', true)
-
-    @log = Logger.new('log/ProductsView.log', 'daily')
-    #@log.debug( 'Hello logger' )
 
     # Style is done via tags. See http://www.tkdocs.com/tutorial/tree.html
     @tree.tag_configure( 'sub_product', :background => 'grey' )
