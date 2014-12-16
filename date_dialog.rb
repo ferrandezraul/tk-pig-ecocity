@@ -3,7 +3,7 @@ require 'date'
 
 class DateDialog
 
-  def initialize( parent )
+  def self.get_date( parent )
     date_dialog = TkToplevel.new( parent ) { title( "Data de la comanda" ) }
     base_frame = TkFrame.new(date_dialog).pack( :fill=>:both, :expand => true )
     TkLabel.new(base_frame) {
@@ -28,10 +28,10 @@ class DateDialog
 
       TkButton.new(frame) {
         text 'Acceptar'
-        command proc { Tk.messageBox('icon'=>'info', 'type'=>'ok', 'title'=>'About Ecocity Demo', 'message'=> "Catched date #{date.to_s}")
-        tmppath = date_dialog
-        date_dialog = nil
-        tmppath.destroy }
+        command proc { yield date
+                       tmppath = date_dialog
+                       date_dialog = nil
+                       tmppath.destroy }
 
       }.pack( 'side' => 'left', 'expand'=> 'yes' )
     }.pack( 'side' => 'bottom', 'fill'=> 'x', 'pady'=> '2m' )

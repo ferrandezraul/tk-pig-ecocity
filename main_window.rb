@@ -84,8 +84,9 @@ class MainWindow
   end
 
   def new_order
-    DateDialog.new(@root)
-
+    DateDialog.get_date(@root) { |date|
+      Tk.messageBox('icon'=>'info', 'type'=>'ok', 'title'=>'About Ecocity Demo', 'message'=> "Catched date #{date.to_s}" )
+    }
   end
 
   def about_box
