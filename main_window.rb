@@ -79,8 +79,35 @@ class MainWindow
   end
 
   def new_order
-    Tk.messageBox( 'icon'=>'info', 'type'=>'ok', 'title'=>'Nova Comanda',
-                  'message'=> "Dialog not implemented" )
+    date_dialog = TkToplevel.new( @root ) {|w|
+      title( "Data de la comanda" )
+    }
+    base_frame = TkFrame.new(date_dialog).pack( :fill=>:both, :expand => true )
+    msg = TkLabel.new(base_frame) {
+      justify 'left'
+      text "Selecciona la data de la comanda"
+    }
+    msg.pack('side'=>'top', 'padx'=>'.5c')
+
+    TkFrame.new(base_frame) {|frame|
+      TkButton.new(frame) {
+        text 'Cancelar'
+        command proc {
+          tmppath = date_dialog
+          date_dialog = nil
+          tmppath.destroy
+        }
+      }.pack('side'=>'left', 'expand'=>'yes')
+
+      TkButton.new(frame) {
+        text 'Acceptar'
+        command proc { Tk.messageBox('icon'=>'info', 'type'=>'ok', 'title'=>'About Ecocity Demo', 'message'=> "Catched date")
+                       tmppath = date_dialog
+                       date_dialog = nil
+                       tmppath.destroy }
+
+      }.pack( 'side' => 'left', 'expand'=> 'yes' )
+    }.pack( 'side' => 'bottom', 'fill'=> 'x', 'pady'=> '2m' )
   end
 
   def about_box
