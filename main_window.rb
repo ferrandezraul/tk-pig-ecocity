@@ -6,12 +6,14 @@ require 'tkextlib/tile'
 
 require 'products_view'
 require 'customers_view'
+require 'orders_view'
 
 class MainWindow
 
   def initialize(args)
     @products = args[:products] || Array.new
     @customers = args[:customers] || Array.new
+    @orders = args[:orders] || Array.new
 
     # root
     @root = TkRoot.new{ title "Porc Ecocity" }
@@ -27,14 +29,22 @@ class MainWindow
 
     @products_page = Tk::Tile::Frame.new( @notebook )   # first page, which would get widgets gridded into it
     @customers_page = Tk::Tile::Frame.new( @notebook )  # second page
+    @orders_page = Tk::Tile::Frame.new( @notebook )     # third page
+    # A new TkTopLevel windows as in examples might be easy to draw ??
+    #@new_order_page = Tk::Tile::Frame.new( @notebook )  # fourth page
 
     @products_view =  ProductsView.new( :parent => @products_page,
                                         :products => @products )
     @customers_view = CustomersView.new( :parent => @customers_page,
                                          :customers => @customers )
+    @orders_view = OrdersView.new( :parent => @orders_page,
+                                   :orders => @orders )
+
+    #@new_order_dialog = NewOrderDialog.new( :parent => @new_order_page )
 
     @notebook.add @products_page, :text => 'Products', :sticky => 'nswe'
     @notebook.add @customers_page, :text => 'Customers', :sticky => 'nswe'
+    @notebook.add @orders_page, :text => 'Comandes', :sticky => 'nswe'
 
     @notebook.enable_traversal
 
@@ -85,6 +95,7 @@ class MainWindow
     @notebook.grid :column => 0, :row => 0, :sticky => 'nsew'
     @products_view.grid :column => 0, :row => 0
     @customers_view.grid :column => 0, :row => 0
+    @orders_view.grid :column => 0, :row => 0
 
     # How expand is handled
     # :weight => 1 expand widget when changing size
@@ -95,6 +106,7 @@ class MainWindow
 
     TkGrid.columnconfigure @products_page, 0, :weight => 1; TkGrid.rowconfigure( @products_page, 0, :weight => 1 )
     TkGrid.columnconfigure @customers_page, 0, :weight => 1; TkGrid.rowconfigure( @customers_page, 0, :weight => 1 )
+    TkGrid.columnconfigure @orders_page, 0, :weight => 1; TkGrid.rowconfigure( @orders_page, 0, :weight => 1 )
   end
 
 end
