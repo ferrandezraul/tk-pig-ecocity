@@ -8,12 +8,16 @@ require 'products_view'
 require 'customers_view'
 require 'orders_view'
 
+require 'date'
+require 'logger'
+
 class MainWindow
 
   def initialize(args)
     @products = args[:products] || Array.new
     @customers = args[:customers] || Array.new
     @orders = args[:orders] || Array.new
+    @log = Logger.new('log/MainWindow.log', 'daily')
 
     # root
     @root = TkRoot.new{ title "Porc Ecocity" }
@@ -87,7 +91,13 @@ class MainWindow
       justify 'left'
       text "Selecciona la data de la comanda"
     }
-    msg.pack('side'=>'top', 'padx'=>'.5c')
+    msg.pack( 'side' => 'left', 'padx'=>'.5c')
+
+    TkFrame.new(base_frame) { |frame|
+      date = TkVariable.new( Date.today )
+      Tk::Tile::Entry.new(frame) { textvariable date }.pack( 'expand' => 'yes' )
+    }.pack( 'fill'=> 'x', 'pady'=> '2m' )
+
 
     TkFrame.new(base_frame) {|frame|
       TkButton.new(frame) {

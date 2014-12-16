@@ -1,3 +1,5 @@
+0. Create a unique logger instance that writes in an unique log file.
+
 1. Check examples in ~/.rvm/src/ruby-2.1.1/ext/tk
    and see how other windows are tied to the main window.
    And also how destruction is handled.
