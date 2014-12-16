@@ -83,21 +83,17 @@ class MainWindow
   end
 
   def new_order
-    date_dialog = TkToplevel.new( @root ) {|w|
-      title( "Data de la comanda" )
-    }
+    date_dialog = TkToplevel.new( @root ) { title( "Data de la comanda" ) }
     base_frame = TkFrame.new(date_dialog).pack( :fill=>:both, :expand => true )
-    msg = TkLabel.new(base_frame) {
+    TkLabel.new(base_frame) {
       justify 'left'
       text "Selecciona la data de la comanda"
-    }
-    msg.pack( 'side' => 'left', 'padx'=>'.5c')
+    }.pack( 'side' => 'left', 'padx'=>'.5c')
 
     TkFrame.new(base_frame) { |frame|
       date = TkVariable.new( Date.today )
       Tk::Tile::Entry.new(frame) { textvariable date }.pack( 'expand' => 'yes' )
     }.pack( 'fill'=> 'x', 'pady'=> '2m' )
-
 
     TkFrame.new(base_frame) {|frame|
       TkButton.new(frame) {
