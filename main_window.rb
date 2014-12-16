@@ -30,8 +30,6 @@ class MainWindow
     @products_page = Tk::Tile::Frame.new( @notebook )   # first page, which would get widgets gridded into it
     @customers_page = Tk::Tile::Frame.new( @notebook )  # second page
     @orders_page = Tk::Tile::Frame.new( @notebook )     # third page
-    # A new TkTopLevel windows as in examples might be easy to draw ??
-    #@new_order_page = Tk::Tile::Frame.new( @notebook )  # fourth page
 
     @products_view =  ProductsView.new( :parent => @products_page,
                                         :products => @products )
@@ -39,8 +37,6 @@ class MainWindow
                                          :customers => @customers )
     @orders_view = OrdersView.new( :parent => @orders_page,
                                    :orders => @orders )
-
-    #@new_order_dialog = NewOrderDialog.new( :parent => @new_order_page )
 
     @notebook.add @products_page, :text => 'Products', :sticky => 'nswe'
     @notebook.add @customers_page, :text => 'Customers', :sticky => 'nswe'
@@ -62,9 +58,9 @@ class MainWindow
     # http://www.ruby-doc.org/stdlib-2.0/libdoc/tk/rdoc/TkMenuSpec.html
     [
         [
-            [ 'File', 0 ],
+            [ 'Ecocity', 0 ],
             [ 'About ... ', proc{about_box}, 0, '<F1>' ],
-            [ 'Quit', proc{ exit }, 0, 'Ctrl-Q' ]
+            [ 'Sortir', proc{ exit }, 0, 'Ctrl-Q' ]
         ],
         [
             [ 'Productes', 0 ],
@@ -73,8 +69,18 @@ class MainWindow
         [
             ['Clients', 0],
             ['Veure Clients', proc{ @notebook.select( @customers_page ) } ]
+        ],
+        [
+            ['Comandes', 0],
+            ['Veure Comandes', proc{ @notebook.select( @orders_page ) } ],
+            ['Nova Comanda', proc{ new_order } ]
         ]
     ]
+  end
+
+  def new_order
+    Tk.messageBox( 'icon'=>'info', 'type'=>'ok', 'title'=>'Nova Comanda',
+                  'message'=> "Dialog not implemented" )
   end
 
   def about_box
