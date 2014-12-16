@@ -90,8 +90,8 @@ class MainWindow
       text "Selecciona la data de la comanda"
     }.pack( 'side' => 'left', 'padx'=>'.5c')
 
+    date = TkVariable.new( Date.today )
     TkFrame.new(base_frame) { |frame|
-      date = TkVariable.new( Date.today )
       Tk::Tile::Entry.new(frame) { textvariable date }.pack( 'expand' => 'yes' )
     }.pack( 'fill'=> 'x', 'pady'=> '2m' )
 
@@ -107,7 +107,7 @@ class MainWindow
 
       TkButton.new(frame) {
         text 'Acceptar'
-        command proc { Tk.messageBox('icon'=>'info', 'type'=>'ok', 'title'=>'About Ecocity Demo', 'message'=> "Catched date")
+        command proc { Tk.messageBox('icon'=>'info', 'type'=>'ok', 'title'=>'About Ecocity Demo', 'message'=> "Catched date #{date.to_s}")
                        tmppath = date_dialog
                        date_dialog = nil
                        tmppath.destroy }
