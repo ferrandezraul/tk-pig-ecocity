@@ -86,6 +86,9 @@ class MainWindow
     DateDialog.get_date(@root) { |date|
       Tk.messageBox('icon'=>'info', 'type'=>'ok', 'title'=>'About Ecocity Demo', 'message'=> "Catched date #{date.to_s}" ) if date
     }
+    #CustomerDialog.get_customer(@root, @customers ){ |customer|
+    #  Tk.messageBox('icon'=>'info', 'type'=>'ok', 'title'=>'About Ecocity Demo', 'message'=> "Catched customer #{customer.name}" ) if customer
+    #}
   end
 
   def about_box

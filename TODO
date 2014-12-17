@@ -1,3 +1,5 @@
+Check QtRuby
+
 0. Clean up DateDialog
    Handle cases when cancel is pressed
    Test it.
